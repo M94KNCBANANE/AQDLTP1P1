@@ -1,0 +1,13 @@
+Vérifier les commandes incorrect
+
+-Vérifier si le nom du client existe
+-Vérifier si le nom du plat existe
+-Vérifier si le format du plat est correct
+-Vérifier si le format du nom du client est correct
+-Vérifier si le format de la commande est correct
+-vérifier si le prix du plat est un chiffres erronés
+-vérifier si la quantités de plats est un chiffre érroné
+
+Vérifier que la taxes est appliquer a chacun des plats
+
+-Vérifier le montant total de la facture.
