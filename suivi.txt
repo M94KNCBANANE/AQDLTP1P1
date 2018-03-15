@@ -1,0 +1,10 @@
+Fred:
+
+-Vérification et gestion des commandes incorrects.
+-Application des taxes sur le total des factures.
+
+Rémy
+
+-Afficher facture à l'écran et éditée dans le fichier.
+-Afficher les commandes incorrectes dans les sorties.
+-Ne pas afficher les factures à 0$.
