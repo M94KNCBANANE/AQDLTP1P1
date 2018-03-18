@@ -1,104 +1,112 @@
 package testUnitaire;
 
+import main.Verification;
+
+import org.junit.Assert;
+import org.junit.Test;
+
 public class VerificationTest {
 
-	public static boolean presenceTableau( String[] tab, String chaine ) {
-			
-		boolean presenceTableau = false;;
+	String[] tab = {"Manon", "Richard", "Bobby", "Fred"};
+	
+	@Test
+	public void testPresenceTableauVrai() {
 		
-		for (int i = 0 ; i < tab.length ; i++) {
-			if (tab[i].equals(chaine)) {
-				presenceTableau = true;
-				break;
-			}
-		}
-		return presenceTableau;
+		boolean test = Verification.presenceTableau(tab, "Manon");
+		
+		Assert.assertTrue(test);
 	}
 	
-	public static boolean prixPlatFonctionne(String prix) {
+	@Test
+	public void testPresenceTableauFaux() {
+		boolean test = Verification.presenceTableau(tab, "toto");
 		
-		boolean conversionReussi = false;
-		
-		try {
-			
-			Double.parseDouble(prix);
-			conversionReussi = true;
-			
-		} catch (Exception e){
-			
-			conversionReussi = false;
-		}
-		
-		return conversionReussi;
+		Assert.assertFalse(test);
 	}
 	
-	public static boolean quantitePlatFonctionne(String qte) {
+	@Test
+	public void testPrixPlatFonctionneVrai() {
+		boolean test = Verification.prixPlatFonctionne("10.75");
 		
-		boolean qteOK = false;
-		
-		try {
-			
-			Integer.parseInt( qte );
-			qteOK = true;
-		
-		} catch (Exception e) {
-			
-			qteOK = false;
-		}
-		
-		return qteOK;
+		Assert.assertTrue(test);
 	}
 	
-	public static boolean formatPlatCorrect(String plat) {
+	@Test
+	public void testPrixPlatFonctionneFaux() {
+		boolean test = Verification.prixPlatFonctionne("allo");
 		
-		boolean platOK = false;
-		char[] tab = plat.toCharArray();
-		
-		for (int i = 0 ; i < tab.length ; i++) {
-			
-			if ( Character.isLetter(tab[i]) || tab[i] == '_' ) {
-				platOK = true;
-			} else {
-				platOK = false;
-				break;
-			}
-		}
-		
-		return platOK;
+		Assert.assertFalse(test);
 	}
 	
-	public static boolean formatClientCorrect(String client) {
+	@Test
+	public void testQuantitePlatFonctionneVrai() {
+		boolean test = Verification.quantitePlatFonctionne("2");
 		
-		boolean clientOK = false;
-		char[] tab = client.toCharArray();
-		
-		for (int i = 0 ; i < tab.length ; i++) {
-			
-			if ( Character.isLetter(tab[i]) || tab[i] == '-' ) {
-				clientOK = true;
-			} else {
-				clientOK = false;
-				break;
-			}
-		}
-		
-		return clientOK;
+		Assert.assertTrue(test);
 	}
+	
+	@Test
+	public void testQuantitePlatFonctionneFaux() {
+		boolean test = Verification.quantitePlatFonctionne("test");
+		
+		Assert.assertFalse(test);
+	}
+	
+	@Test
+	public void testFormatPlatCorrectVrai() {
+		boolean test = Verification.formatPlatCorrect("Repas_Poulet");
+		
+		Assert.assertTrue(test);
+	}
+	
+	@Test
+	public void testFormatPlatCorrectFauxEspace() {
+		boolean test = Verification.formatPlatCorrect("Repas Poulet");
+		
+		Assert.assertFalse(test);
+	}
+	
+	@Test
+	public void testFormatPlatCorrectFauxPoint() {
+		boolean test = Verification.formatPlatCorrect("Repas.Poulet");
+		
+		Assert.assertFalse(test);
+	}
+	
+	@Test
+	public void testFormatPlatCorrectFauxTiret() {
+		boolean test = Verification.formatPlatCorrect("Repas-Poulet");
+		
+		Assert.assertFalse(test);
+	}
+	
+	@Test
+	public void testFormatPlatCorrectFauxNombre() {
+		boolean test = Verification.formatPlatCorrect("Repas_Poulet3");
+		
+		Assert.assertFalse(test);
+	}
+	
+	@Test
+	public void testFormatClientCorrectVrai() {
+		boolean test = Verification.formatClientCorrect("Manon");
+		
+		Assert.assertTrue(test);
+	}
+	
+	@Test
+	public void testFormatClientCorrectFauxNombre() {
+		boolean test = Verification.formatClientCorrect("Manon3");
+		
+		Assert.assertFalse(test);
+	}
+	
+	@Test
+	public void testFormatClientCorrectFauxEspace() {
+		boolean test = Verification.formatClientCorrect("Manon Ginette");
+		
+		Assert.assertFalse(test);
+	}
+	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

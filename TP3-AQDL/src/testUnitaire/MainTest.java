@@ -1,18 +1,26 @@
 package testUnitaire;
 
+import org.junit.Assert;
+import org.junit.Test;
+
+import main.Main;
+
 public class MainTest {
 
-	public static double calculerTPS(double prix) {
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testCalculerTPS() {
+		double montantDeLaTPS = Main.calculerTPS(100);
 		
-		final double TPS = 0.05;
-		
-		return prix * TPS;
+		Assert.assertEquals(5, montantDeLaTPS, 0);
 	}
 	
-	public static double calculerTVQ(double prix) {
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testCalculerTVQ() {
+		double montantDeLaTVQ = Main.calculerTVQ(100);
 		
-		final double TVQ = 0.10;
-		
-		return prix * TVQ;
+		Assert.assertEquals(10, montantDeLaTVQ, 0);
 	}
+
 }

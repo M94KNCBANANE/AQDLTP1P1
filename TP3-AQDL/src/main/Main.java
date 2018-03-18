@@ -1,17 +1,24 @@
+package main;
 import java.io.IOException;
 
 public class Main {
 	
-	public static String erreur = "Le fichier ne respecta pas le format demandé !";
+	public static String erreur = "Le fichier ne respecte pas le format demandé !";
 	public static NomClient[] tabClient;
 	public static Plats[] tabPlat;
 	public static Commande[] tabCommande;
 	
 	
 	public static void main( String[] args ) throws IOException {
+		String[] texte = Lecture.lectureFichier();
+		
+		importationFichierVariables(texte);
+	}
+	
+	public static boolean importationFichierVariables(String[] texte) {
 		
 		int test;
-		String[] texte = Lecture.lectureFichier();
+		boolean importOK = false;
 		
 		tabClient = new NomClient[Integer.parseInt( texte[texte.length-3] )];
 		
@@ -41,13 +48,16 @@ public class Main {
 		
 		if( test == tabCommande.length ){
 			
+			importOK = true;
 			afficherFacture();
 			
 		}else{
 			
-			System.out.println( erreur );
+			importOK = false;
 			
 		}
+		
+		return importOK;
 	}
 	
 	private static void afficherFacture() {
@@ -79,6 +89,20 @@ public class Main {
 		}
 	}
 
+	public static double calculerTPS(double prix) {
+		
+		final double TPS = 0.05;
+		
+		return prix * TPS;
+	}
+	
+	public static double calculerTVQ(double prix) {
+		
+		final double TVQ = 0.10;
+		
+		return prix * TVQ;
+	}
+	
 	public static int Verifier( String[] texte ) {
 		
 		int indiceTexte = 0;
