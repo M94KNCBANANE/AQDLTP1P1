@@ -4,8 +4,14 @@ Vérifier les commandes incorrect
 
 -Vérifier si le nom du client et du plat existe dans un tableau 
 	
-Methode presenceTableau(Tableau String tab, string entree), class Verification, retourne boolean
+Methode presenceTableau(Tableau String tab, string chaine), class Verification, retourne boolean
 
 -vérifier si la quantités de plats est un chiffre érroné
 		
-Methode quantitePlatFonctionne(String quantité), class Verification, retourne boolean
+Methode quantitePlatFonctionne(String qte), class Verification, retourne boolean
+
+-vérifier que la tps s'applique bien
+Methode calculerTPS(double prix), class Main, retourne double
+
+-vérifier que la tvq s'applique bien
+Methode calculerTVQ(double prix), class Main, retourne double

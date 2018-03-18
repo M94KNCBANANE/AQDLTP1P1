@@ -8,4 +8,4 @@ Methode prixPlatFonctionne(String Prix), class Verification, retourne boolean
 
 -Verifier si le format du client est correct
 		
-Methode formatClientCorrect(String nomClient), class Verification, retourne boolean
+Methode formatClientCorrect(String Client), class Verification, retourne boolean

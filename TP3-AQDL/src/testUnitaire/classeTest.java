@@ -58,8 +58,29 @@ public class classeTest {
 	}
 	
 	@Test
-	public void testFormatPlatCorrectFaux() {
+	public void testFormatPlatCorrectFauxEspace() {
 		boolean test = VerificationTest.formatPlatCorrect("Repas Poulet");
+		
+		Assert.assertFalse(test);
+	}
+	
+	@Test
+	public void testFormatPlatCorrectFauxPoint() {
+		boolean test = VerificationTest.formatPlatCorrect("Repas.Poulet");
+		
+		Assert.assertFalse(test);
+	}
+	
+	@Test
+	public void testFormatPlatCorrectFauxTiret() {
+		boolean test = VerificationTest.formatPlatCorrect("Repas-Poulet");
+		
+		Assert.assertFalse(test);
+	}
+	
+	@Test
+	public void testFormatPlatCorrectFauxNombre() {
+		boolean test = VerificationTest.formatPlatCorrect("Repas_Poulet3");
 		
 		Assert.assertFalse(test);
 	}
@@ -72,9 +93,32 @@ public class classeTest {
 	}
 	
 	@Test
-	public void testFormatClientCorrectFaux() {
+	public void testFormatClientCorrectFauxNombre() {
 		boolean test = VerificationTest.formatClientCorrect("Manon3");
 		
 		Assert.assertFalse(test);
+	}
+	
+	@Test
+	public void testFormatClientCorrectFauxEspace() {
+		boolean test = VerificationTest.formatClientCorrect("Manon Ginette");
+		
+		Assert.assertFalse(test);
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testCalculerTPS() {
+		double montantDeLaTPS = MainTest.calculerTPS(100);
+		
+		Assert.assertEquals(5, montantDeLaTPS, 0);
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testCalculerTVQ() {
+		double montantDeLaTVQ = MainTest.calculerTVQ(100);
+		
+		Assert.assertEquals(10, montantDeLaTVQ, 0);
 	}
 }
