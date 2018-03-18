@@ -1,0 +1,8 @@
+-Verifier si le format du plat est correct
+		Methode verifierFormatPlat(String plat), class VerificationF, retourne boolean
+
+-Verifier si le format du prix est correct
+		Methode verifierFormatPrix(double prix), class VerificationF, retourne boolean
+
+-Verifier si le format du client est correct
+		Methode verifierClient(String nomClient), class VerificationF, retourne boolean

@@ -1,0 +1,17 @@
+Liste des règles de style pour le projet:
+
+-Il y a des espaces avant et après le contenu dans les parenthèses lorsqu'elle ne sont pas vide.
+
+-Il y a un espace avant et après chaque opérateur (=,-,+,/,%,==).
+
+-Il y a un espace avant l'accolade ouvrante d'une classe et d'une méthode, mais pas lorsqu'il s'agit dun bloc
+ d'insctruction.
+ 
+-Les déclarations de variables et les affections sont séparés dans des blocs du reste des instructions. (saut à la ligne
+ avant et après)
+
+-Il n'y a pas de saut à la ligne entre les accolades fermantes.
+
+-Il y a une tabulation pour l'indentation après chaque accolade ouvrante (après l'ouverture des blocs conditionnels).
+
+-Il y a un saut à la ligne après chaque accolade ouvrante.
