@@ -7,7 +7,6 @@ import main.Main;
 
 public class MainTest {
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testCalculerTPS() {
 		double montantDeLaTPS = Main.calculerTPS(100);
@@ -15,7 +14,6 @@ public class MainTest {
 		Assert.assertEquals(5, montantDeLaTPS, 0);
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testCalculerTVQ() {
 		double montantDeLaTVQ = Main.calculerTVQ(100);
