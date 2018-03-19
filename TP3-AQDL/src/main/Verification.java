@@ -1,12 +1,17 @@
 package main;
 public class Verification {
 
-	public static boolean presenceTableau( String[] tab, String chaine ) {
-			
-		boolean presenceTableau = false;;
+	
+	public Verification() {
+		
+	}
+	
+	public boolean presencePlat( Plats[] tab, String chaine ) {
+		
+		boolean presenceTableau = false;
 		
 		for (int i = 0 ; i < tab.length ; i++) {
-			if (tab[i].equals(chaine)) {
+			if (tab[i].getPlat().equals(chaine)) {
 				presenceTableau = true;
 				break;
 			}
@@ -14,7 +19,20 @@ public class Verification {
 		return presenceTableau;
 	}
 	
-	public static boolean prixPlatFonctionne(String prix) {
+	public boolean presenceClient( NomClient[] tab, String chaine ) {
+			
+		boolean presenceTableau = false;;
+		
+		for (int i = 0 ; i < tab.length ; i++) {
+			if (tab[i].getNom().equals(chaine)) {
+				presenceTableau = true;
+				break;
+			}
+		}
+		return presenceTableau;
+	}
+	
+	public boolean prixPlatFonctionne(String prix) {
 		
 		boolean conversionReussi = false;
 		
@@ -31,7 +49,7 @@ public class Verification {
 		return conversionReussi;
 	}
 	
-	public static boolean quantitePlatFonctionne(String qte) {
+	public boolean quantitePlatFonctionne(String qte) {
 		
 		boolean qteOK = false;
 		
@@ -48,7 +66,7 @@ public class Verification {
 		return qteOK;
 	}
 	
-	public static boolean formatPlatCorrect(String plat) {
+	public boolean formatPlatCorrect(String plat) {
 		
 		boolean platOK = false;
 		char[] tab = plat.toCharArray();
@@ -66,7 +84,7 @@ public class Verification {
 		return platOK;
 	}
 	
-	public static boolean formatClientCorrect(String client) {
+	public boolean formatClientCorrect(String client) {
 		
 		boolean clientOK = false;
 		char[] tab = client.toCharArray();
