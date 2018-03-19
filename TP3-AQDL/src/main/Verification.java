@@ -24,7 +24,9 @@ public class Verification {
 		boolean presenceTableau = false;;
 		
 		for (int i = 0 ; i < tab.length ; i++) {
+			
 			if (tab[i].getNom().equals(chaine)) {
+				
 				presenceTableau = true;
 				break;
 			}

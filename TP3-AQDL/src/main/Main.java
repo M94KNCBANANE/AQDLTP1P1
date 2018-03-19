@@ -7,7 +7,7 @@ public class Main {
 	public static NomClient[] tabClient;
 	public static Plats[] tabPlat;
 	public static Commande[] tabCommande;
-	Verification verif = new Verification();
+	public static Verification verif = new Verification();
 	
 	
 	public static void main( String[] args ) throws IOException {
@@ -46,7 +46,7 @@ public class Main {
 		}
 		
 		test = Verifier(texte);
-		
+		System.out.println(erreur);
 		if( test == tabCommande.length ){
 			
 			importOK = true;
@@ -113,10 +113,10 @@ public class Main {
 		indiceTexte++;
 		
 		while( !texte[indiceTexte].equals( "Plats :" ) ){
-			if(verif.formatClientCorrect(texte[indiceTexte++])){
-			tabClient[indiceTab++].setNom( texte[indiceTexte] );
+			if(verif.formatClientCorrect(texte[indiceTexte])){
+			tabClient[indiceTab++].setNom( texte[indiceTexte++] );
 			}else{
-				 erreur += "Le nom du client suivant "+ texte[indiceTexte] + " ne respecte pas le format demandé \n";
+				 erreur += "Le nom du client suivant "+ texte[indiceTexte++] + " ne respecte pas le format demandé \n";
 			}
 		}
 		
@@ -126,10 +126,10 @@ public class Main {
 		while( !texte[indiceTexte].equals( "Commandes :" ) ){
 			
 			plat = texte[indiceTexte++].split( " " );
-			if(Verification.formatPlatCorrect(plat[0]) && Verification.prixPlatFonctionne(plat[1])){
+			if(verif.formatPlatCorrect(plat[0]) && verif.prixPlatFonctionne(plat[1])){
 			tabPlat[indiceTab].setPlat( plat[0] );			
 			tabPlat[indiceTab++].setPrix( Double.parseDouble( plat[1] ) );
-			}else if(!Verification.formatPlatCorrect(plat[0])){
+			}else if(!verif.formatPlatCorrect(plat[0])){
 				erreur +="Le plat suivant "+plat[0]+" ne respecte pas le format demandé\n";
 			}else{
 				erreur +="Le prix "+plat[1] + " du plat suivant "+plat[0]+" ne respecte pas le format demandé\n";
@@ -141,25 +141,29 @@ public class Main {
 		
 		while( !texte[indiceTexte].equals( "Fin" ) ){
 			
-			plat = texte[indiceTexte++].split( " " );
+			plat = texte[indiceTexte].split( " " );
 			
 			if( plat.length == 3 ){
 				
-				if(Verification.presenceClient(tabClient,plat[0]) && Verification.presencePlat(tabPlat,plat[1]) && Verification.qtePlatFonctionn(plat[2])){
+				if(verif.presenceClient(tabClient,plat[0]) && verif.presencePlat(tabPlat,plat[1]) && verif.quantitePlatFonctionne(plat[2])){
 					tabCommande[indiceTab].setNom( plat[0] );
 					tabCommande[indiceTab].setPlat( plat[1] );
 					tabCommande[indiceTab++].setQuantite( Integer.parseInt( plat[2] ) );
 					test++;
-				}else if(!Verification.presenceClient(tabClient,plat[0])){
-					erreur += "Le client suivant ";
-				}else if(!Verification.presencePlat(tabPlat,plat[1])){
-					erreur += "Le plat suivant ";
 				}else{
-					erreur += "La quantité";
+					if(!verif.presenceClient(tabClient,plat[0])){
+					erreur += "Le client suivant "+plat[0]+" de la commande "+texte[indiceTexte]+ " n'existe pas\n";
+				}
+				if(!verif.presencePlat(tabPlat,plat[1])){
+					erreur += "Le plat suivant "+plat[1]+" de la commande "+texte[indiceTexte]+ " n'existe pas\n";
+				}
+				if(!verif.quantitePlatFonctionne(plat[2])){
+					erreur += "La quantité "+plat[2]+" de la commande "+texte[indiceTexte]+ " n'est pas valide\n";
+				}
 				}
 								
-							}
-						
+				}
+			indiceTexte++;
 					
 				
 			}
