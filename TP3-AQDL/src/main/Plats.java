@@ -1,3 +1,4 @@
+package main;
 public class Plats {
 
 	public String Plat;
