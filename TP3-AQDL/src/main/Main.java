@@ -20,7 +20,4 @@ public class Main {
 		ref.afficherEcrireFacture(tabClient, tabPlat, tabCommande);
 
 		}
-	
-	
-
 	}

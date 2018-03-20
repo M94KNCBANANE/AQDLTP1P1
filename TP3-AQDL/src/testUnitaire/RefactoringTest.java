@@ -3,20 +3,22 @@ package testUnitaire;
 import org.junit.Assert;
 import org.junit.Test;
 
-import main.Main;
+import main.Refactoring;
 
-public class MainTest {
+public class RefactoringTest {
+	
+	Refactoring refact = new Refactoring();
 
 	@Test
 	public void testCalculerTPS() {
-		double montantDeLaTPS = Main.calculerTPS(100);
+		double montantDeLaTPS = refact.calculerTPS(100);
 		
 		Assert.assertEquals(5, montantDeLaTPS, 0);
 	}
 	
 	@Test
 	public void testCalculerTVQ() {
-		double montantDeLaTVQ = Main.calculerTVQ(100);
+		double montantDeLaTVQ = refact.calculerTVQ(100);
 		
 		Assert.assertEquals(10, montantDeLaTVQ, 0);
 	}

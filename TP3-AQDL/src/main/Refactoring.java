@@ -15,6 +15,10 @@ public class Refactoring {
 	private int qtePlats = 0;
 	private int qteCommandes = 0;
 	private String erreur = "";
+	
+	public Refactoring() {
+		
+	}
 
 	public void initialiserClient(NomClient[] tab) {
 
@@ -177,10 +181,10 @@ public class Refactoring {
 
 		// indice client
 
-		System.out.println("Facture du: " + dff.format(dateobj) + "\n");
-		ficEcriture.write("Facture du: " + dff.format(dateobj) + "\r\n");
+		System.out.println("\nFacture du: " + dff.format(dateobj));
+		ficEcriture.write("\r\nFacture du: " + dff.format(dateobj) + "\r\n");
 		System.out.println(erreur);
-		ficEcriture.write(erreur + "\r\n\r\n");
+		ficEcriture.write(erreur + "\r\n");
 
 		prix = trouverPrix(tabClient, tabPlat, tabCommande);
 		for (int i = 0; i < prix.length; i++) {
