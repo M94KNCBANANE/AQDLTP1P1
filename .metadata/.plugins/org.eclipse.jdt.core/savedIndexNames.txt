@@ -1,4 +1,0 @@
-INDEX VERSION 1.127+Z:\AQDL\AQDLTP1P1\.metadata\.plugins\org.eclipse.jdt.core
-2663436436.index
-1436287793.index
-3540545951.index
