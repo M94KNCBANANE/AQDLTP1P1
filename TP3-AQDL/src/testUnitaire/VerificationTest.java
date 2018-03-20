@@ -36,14 +36,14 @@ public class VerificationTest {
 	@Test
 	public void testPresenceClientVrai() {
 		
-		boolean test = verif.presenceClient(tabClient, "Manon");
+		boolean test = verif.presenceClient(tabClient, "Manon", tabClient.length);
 		
 		Assert.assertTrue(test);
 	}
 	
 	@Test
 	public void testPresenceClientFaux() {
-		boolean test = verif.presenceClient(tabClient, "toto");
+		boolean test = verif.presenceClient(tabClient, "toto", tabClient.length);
 		
 		Assert.assertFalse(test);
 	}
@@ -51,14 +51,14 @@ public class VerificationTest {
 	@Test
 	public void testPresencePlatVrai() {
 		
-		boolean test = verif.presencePlat(tabPlats, "Frite");
+		boolean test = verif.presencePlat(tabPlats, "Frite", tabPlats.length);
 		
 		Assert.assertTrue(test);
 	}
 	
 	@Test
 	public void testPresencePlatFaux() {
-		boolean test = verif.presencePlat(tabPlats, "Manger");
+		boolean test = verif.presencePlat(tabPlats, "Manger", tabPlats.length);
 		
 		Assert.assertFalse(test);
 	}

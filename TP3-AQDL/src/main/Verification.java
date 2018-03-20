@@ -6,20 +6,20 @@ public class Verification {
 		
 	}
 	
-	public boolean presencePlat( Plats[] tab, String chaine ) {
+	public boolean presencePlat( Plats[] tab, String chaine, int qte ) {
 		
 		boolean presenceTableau = false;
 		
-		for (int i = 0 ; i < tab.length ; i++) {
-			if (tab[i].getPlat().equals(chaine)) {
-				presenceTableau = true;
-				break;
+		for (int i = 0 ; i < qte ; i++) {
+				if (tab[i].getPlat().equals(chaine)) {
+					presenceTableau = true;
+					break;
 			}
 		}
 		return presenceTableau;
 	}
 	
-	public boolean presenceClient( NomClient[] tab, String chaine ) {
+	public boolean presenceClient( NomClient[] tab, String chaine, int qte ) {
 			
 		boolean presenceTableau = false;;
 		
