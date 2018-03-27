@@ -56,7 +56,7 @@ public class Refactoring {
 			for (int j = 0; j < qteCommandes; j++) {
 
 				if (tabClient[i].getNom().equals(tabCommande[j].getNom())) {
-
+					
 					// indice plats
 					for (int x = 0; x < qtePlats; x++) {
 
@@ -144,7 +144,7 @@ public class Refactoring {
 
 			if (valeur.length == 3) {
 
-				if (verif.presenceClient(tabClient, valeur[0], qteCommandes)
+				if (verif.presenceClient(tabClient, valeur[0], qteClients)
 						&& verif.presencePlat(tabPlat, valeur[1], qtePlats)
 						&& verif.quantitePlatFonctionne(valeur[2])) {
 					tabCommande[indiceTab].setNom(valeur[0]);
@@ -152,7 +152,7 @@ public class Refactoring {
 					tabCommande[indiceTab++].setQuantite(Integer
 							.parseInt(valeur[2]));
 				} else {
-					if (!verif.presenceClient(tabClient, valeur[0], qteCommandes)) {
+					if (!verif.presenceClient(tabClient, valeur[0], qteClients)) {
 						erreur += "Le client suivant " + valeur[0]
 								+ " de la commande " + texte[indiceTexte]
 								+ " n'existe pas\n";
@@ -199,10 +199,14 @@ public class Refactoring {
 			prixTable[x] = 0.00;
 		}
 		int table = 1;
+		int clientCompteur=0;
 		for (int i = 0; i < prixClient.length; i++) {
 			
 			if(table != tabClient[i].getNumeroTable()){
 				if (prixTable[table] != 0.0) {
+					if(clientCompteur >=3 || prixTable[table] >= 100){
+						prixTable[table] *= 1.15;
+					}
 					prixTable[table] += calculerTPS(prixTable[table]) + calculerTVQ(prixTable[table]);
 					System.out.println("Table numéro " + table +  " : "
 							+ OutilsAffichage.formaterMonetaire(prixTable[table], 2));
@@ -213,9 +217,10 @@ public class Refactoring {
 				table = tabClient[i].getNumeroTable();
 			}
 			if(prixClient[i] != 0.00){
-			prixTable[table] = prixClient[i];	
+			prixTable[table] += prixClient[i];	
 			System.out.println(tabClient[i].getNom());
 			ficEcriture.write(tabClient[i].getNom() + "\r\n");
+			clientCompteur++;
 			}
 			}
 		
@@ -225,13 +230,15 @@ public class Refactoring {
 
 	public void trierClient(NomClient[] tabClient) {
 		NomClient temp;
-		
-		for(int i=0;i<tabClient.length-1;i++){
+
+		for(int j=0; j<qteClients -1;j++){
+		for(int i=0;i<qteClients-1;i++){
 			if(tabClient[i].getNumeroTable()> tabClient[i+1].getNumeroTable()){
 				temp = tabClient[i];
 				tabClient[i] = tabClient[i+1];
 				tabClient[i+1] = temp;
 			}
+		}
 		}
 		
 	}

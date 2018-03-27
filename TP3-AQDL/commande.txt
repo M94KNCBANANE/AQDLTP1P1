@@ -1,12 +1,23 @@
 Clients :
-Roger 1
+Roger 4
 Céline 1
-Steeve 2
+Steeve 3
+Fred 1
+Remy 14
+Patate 1
 Plats :
+Pizza 15.3
+Hot_Dog 0.99
+Nachos 10.95
+CheeseBurger 2.99
 Poutine 10.5
 Frites 2.5
 Repas_Poulet 15.75
 Commandes :
+Patate Frites 3
+Fred Pizza 2
+Remy Hot_Dog 80
+Steeve CheeseBurger 65
 Roger Poutine 1
 Céline Frites 2
 Céline Repas_Poulet 1
