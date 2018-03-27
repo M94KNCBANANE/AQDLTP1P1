@@ -1,7 +1,7 @@
 Clients :
-Roger
-Céline
-Steeve
+Roger 1
+Céline 1
+Steeve 2
 Plats :
 Poutine 10.5
 Frites 2.5

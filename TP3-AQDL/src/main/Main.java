@@ -16,7 +16,8 @@ public class Main {
 		ref.initialiserPlats(tabPlat);
 		tabCommande = new Commande[Integer.parseInt( texte[texte.length-1] )];
 		ref.initialiserCommande(tabCommande);
-		ref.insererDonnes(texte, tabClient, tabPlat, tabCommande);		
+		ref.insererDonnes(texte, tabClient, tabPlat, tabCommande);
+		ref.trierClient(tabClient);
 		ref.afficherEcrireFacture(tabClient, tabPlat, tabCommande);
 
 		}

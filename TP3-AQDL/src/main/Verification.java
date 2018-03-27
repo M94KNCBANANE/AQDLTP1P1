@@ -103,6 +103,23 @@ public class Verification {
 		
 		return clientOK;
 	}
+
+	public boolean formatTableCorrect(String string, int max) {
+		boolean TableOK = false;
+		
+		try {
+			
+			int test=Integer.parseInt( string );
+			if(test <=max){
+			TableOK = true;
+			}
+		} catch (Exception e) {
+			
+			TableOK = false;
+		}
+		
+		return TableOK;
+}
 }
 
 
