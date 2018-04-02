@@ -26,7 +26,6 @@ public class Verification {
 		for (int i = 0 ; i < qte ; i++) {
 			
 			if (tab[i].getNom().equals(chaine)) {
-				
 				presenceTableau = true;
 				break;
 			}

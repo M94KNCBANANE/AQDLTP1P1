@@ -1,13 +1,11 @@
 package main;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import javax.swing.JTextArea;
 import outilsjava.OutilsAffichage;
-import outilsjava.OutilsFichier;
+
 
 public class Refactoring {
 
@@ -22,7 +20,7 @@ public class Refactoring {
 	}
 
 	public void initialiserClient(NomClient[] tab) {
-
+		qteClients=0;
 		for (int i = 0; i < tab.length; i++) {
 			tab[i] = new NomClient();
 			qteClients++;
@@ -30,6 +28,7 @@ public class Refactoring {
 	}
 
 	public void initialiserPlats(Plats[] tab) {
+		qtePlats=0;
 		for (int i = 0; i < tab.length; i++) {
 			tab[i] = new Plats();
 			qtePlats++;
@@ -37,6 +36,8 @@ public class Refactoring {
 	}
 
 	public void initialiserCommande(Commande[] tab) {
+		qteCommandes=0;
+		erreur="";
 		for (int i = 0; i < tab.length; i++) {
 			tab[i] = new Commande();
 			qteCommandes++;
@@ -174,27 +175,25 @@ public class Refactoring {
 		}
 	}
 
-	public void afficherEcrireFacture(NomClient[] tabClient,Plats[] tabPlat,Commande[] tabCommande) throws IOException {
+	public static void ecrireEcran(JTextArea zoneTexte, String string) {
+		zoneTexte.setText(zoneTexte.getText() + "\n" + string);
+	}
+	
+	public void afficherFacture(NomClient[] tabClient,Plats[] tabPlat,Commande[] tabCommande, JTextArea zoneTexte){
 
-		BufferedWriter ficEcriture;
-		DateFormat df = new SimpleDateFormat("dd-MM-yy-HH.mm");
 		DateFormat dff = new SimpleDateFormat("dd-MM-yy HH:mm");
 		Date dateobj = new Date();
-		String nomFichier = "Facture-du-" + df.format(dateobj) + ".txt";
-
-		ficEcriture = OutilsFichier.ouvrirFicTexteEcriture(nomFichier);
 
 		double[] prixClient = new double[tabClient.length];
 
 		// indice client
 
-		System.out.println("\nFacture du: " + dff.format(dateobj));
-		ficEcriture.write("\r\nFacture du: " + dff.format(dateobj) + "\r\n");
-		System.out.println(erreur);
-		ficEcriture.write(erreur + "\r\n");
+		ecrireEcran(zoneTexte, "Facture du: " + dff.format(dateobj));
+		ecrireEcran(zoneTexte, erreur);
 
 		prixClient = trouverPrix(tabClient, tabPlat, tabCommande);
 		double[] prixTable = new double[NOMBRE_TABLE];
+		
 		for(int x=0;x<prixTable.length;x++){
 			prixTable[x] = 0.00;
 		}
@@ -208,24 +207,18 @@ public class Refactoring {
 						prixTable[table] *= 1.15;
 					}
 					prixTable[table] += calculerTPS(prixTable[table]) + calculerTVQ(prixTable[table]);
-					System.out.println("Table numéro " + table +  " : "
+					ecrireEcran(zoneTexte, "Table numéro " + table +  " : "
 							+ OutilsAffichage.formaterMonetaire(prixTable[table], 2));
-					ficEcriture.write("Table numéro " + table +  " : "
-							+ OutilsAffichage.formaterMonetaire(prixTable[table], 2)
-							+ "\r\n");
 			}
 				table = tabClient[i].getNumeroTable();
 			}
 			if(prixClient[i] != 0.00){
 			prixTable[table] += prixClient[i];	
-			System.out.println(tabClient[i].getNom());
-			ficEcriture.write(tabClient[i].getNom() + "\r\n");
+			ecrireEcran(zoneTexte, tabClient[i].getNom());
 			clientCompteur++;
 			}
-			}
-		
-
-		OutilsFichier.fermerFicTexteEcriture(ficEcriture, nomFichier);
+		}
+			
 	}
 
 	public void trierClient(NomClient[] tabClient) {

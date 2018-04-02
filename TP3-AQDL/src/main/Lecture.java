@@ -2,11 +2,12 @@ package main;
 import java.io.BufferedReader;
 import java.io.IOException;
 
+import javax.swing.JTextArea;
+
 import outilsjava.OutilsFichier;
 
 public class Lecture {
 	
-	static String nomFichier;
 	static String ligne;
 	static BufferedReader ficLecture;
 	static String[] lignesFichier;
@@ -17,61 +18,67 @@ public class Lecture {
 	public Lecture() throws IOException {
 	}
 	
-	public static String[] lectureFichier() throws IOException {
+	public static String[] lectureFichier(String nomFichier, JTextArea zoneTexte) throws IOException {
 		
 		nbChaque[0] = -1;
 		nbChaque[1] = -1;
 		nbChaque[2] = -1;
+
 		
-		nomFichier = OutilsFichier.lireNomFichier( "Entrez le nom du fichier de commandes: " );
-		ficLecture = OutilsFichier.ouvrirFicTexteLecture( nomFichier );
+		ficLecture = OutilsFichier.ouvrirFicTexteLecture( nomFichier, zoneTexte );
 		
-		grosseur = getGrosseurFichier( ficLecture );
-		lignesFichier = new String[grosseur+3];
-		
-		OutilsFichier.fermerFicTexteLecture( ficLecture, nomFichier );
-		ficLecture = OutilsFichier.ouvrirFicTexteLecture( nomFichier );
-		
-		for ( int i = 0;( ligne = ficLecture.readLine() ) != null ;i++ ){
+		if (ficLecture != null) {
+			grosseur = getGrosseurFichier( ficLecture );
+			lignesFichier = new String[grosseur+3];
 			
-			lignesFichier[i] = ligne;
+			OutilsFichier.fermerFicTexteLecture( ficLecture, nomFichier );
+			ficLecture = OutilsFichier.ouvrirFicTexteLecture( nomFichier, zoneTexte );
 			
-			switch ( compteur ) {
+			for ( int i = 0;( ligne = ficLecture.readLine() ) != null ;i++ ){
 				
-			case 1:
-				nbChaque[0]++;
-				break;
-			case 2:
-				nbChaque[1]++;
-				break;
-			case 3:
-				nbChaque[2]++;
-				break;
+				lignesFichier[i] = ligne;
+				
+				switch ( compteur ) {
+					
+				case 1:
+					nbChaque[0]++;
+					break;
+				case 2:
+					nbChaque[1]++;
+					break;
+				case 3:
+					nbChaque[2]++;
+					break;
+				}
+				
+				if ( ligne.equals( "Clients :" ) ){
+					
+					compteur = 1;
+					
+				} else if ( ligne.equals( "Plats :" ) ){
+					
+					compteur = 2;
+					
+				} else if ( ligne.equals( "Commandes :" ) ){
+					
+					compteur = 3;
+					
+				} else if ( ligne.equals( "Fin" ) ){
+					
+					compteur = 4;
+					
+				}
 			}
 			
-			if ( ligne.equals( "Clients :" ) ){
-				
-				compteur = 1;
-				
-			} else if ( ligne.equals( "Plats :" ) ){
-				
-				compteur = 2;
-				
-			} else if ( ligne.equals( "Commandes :" ) ){
-				
-				compteur = 3;
-				
-			} else if ( ligne.equals( "Fin" ) ){
-				
-				compteur = 4;
-				
-			}
+			lignesFichier[lignesFichier.length-3] = "" + nbChaque[0];
+			lignesFichier[lignesFichier.length-2] = "" + nbChaque[1];
+			lignesFichier[lignesFichier.length-1] = "" + nbChaque[2];
+			
+			
+		} else {
+			Refactoring.ecrireEcran(zoneTexte, "\nErreur, le fichier " + nomFichier
+						+ " n'existe pas.");
 		}
-		
-		lignesFichier[lignesFichier.length-3] = "" + nbChaque[0];
-		lignesFichier[lignesFichier.length-2] = "" + nbChaque[1];
-		lignesFichier[lignesFichier.length-1] = "" + nbChaque[2];
-		
 		return lignesFichier;
 	}
 	
