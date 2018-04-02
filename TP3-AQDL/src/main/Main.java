@@ -57,7 +57,8 @@ public class Main extends JFrame {
 		
 		pan = new JPanel();
 		
-		nomFich = new JTextField("commande.txt");
+		nomFich = new JTextField("");
+		nomFich.setColumns(10);
 		lireFich = new JButton("Lire fichier de commande");
 		prodFact = new JButton("Produire le fichier de facture");
 		zoneTexte = ConstruireZoneTexte( multiLignes );
@@ -70,6 +71,8 @@ public class Main extends JFrame {
 		
 		add(pan, BorderLayout.NORTH);
 		add(zoneTexte);
+		prodFact.setEnabled(false);
+		multiLignes.setText("Pour produire une facture, vous devez d'abord charger un fichier de commande.");
 		
 		addWindowListener(new WindowAdapter(){
 			@Override
@@ -94,12 +97,14 @@ public class Main extends JFrame {
 			
 			if (e.getSource() == lireFich) {
 					try {
+						texte = null;
 						texte = Lecture.lectureFichier(nomFich.getText(), multiLignes);
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					if(texte != null){
+						
 						multiLignes.setText("");
 						tabClient = new NomClient[Integer.parseInt( texte[texte.length-3] )];
 						ref.initialiserClient(tabClient);
@@ -110,9 +115,11 @@ public class Main extends JFrame {
 						ref.insererDonnes(texte, tabClient, tabPlat, tabCommande);
 						ref.trierClient(tabClient);
 						ref.afficherFacture(tabClient, tabPlat, tabCommande, multiLignes);
+						prodFact.setEnabled(true);
 						
 					} else {
-						
+						prodFact.setEnabled(false);
+						multiLignes.setText("Le fichier n'existe pas, veuillez entrer un nom valide.");
 					}
 									
 				} else if (e.getSource() == prodFact) {

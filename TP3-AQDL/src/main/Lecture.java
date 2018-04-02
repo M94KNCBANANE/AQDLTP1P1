@@ -73,12 +73,14 @@ public class Lecture {
 			lignesFichier[lignesFichier.length-3] = "" + nbChaque[0];
 			lignesFichier[lignesFichier.length-2] = "" + nbChaque[1];
 			lignesFichier[lignesFichier.length-1] = "" + nbChaque[2];
-			
+			OutilsFichier.fermerFicTexteLecture( ficLecture, nomFichier );
 			
 		} else {
+			lignesFichier = null;
 			Refactoring.ecrireEcran(zoneTexte, "\nErreur, le fichier " + nomFichier
 						+ " n'existe pas.");
 		}
+		
 		return lignesFichier;
 	}
 	
