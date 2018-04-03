@@ -1,0 +1,13 @@
+
+Facture du: 02-04-18 19:42
+La table suivante 14 ne respecte pas le format demandé 
+Le client suivant Remy de la commande Remy Hot_Dog 80 n'existe pas
+
+Céline
+Fred
+Patate
+Table numéro 1 : 77,83 $
+Steeve
+Table numéro 3 : 257,03 $
+Roger
+Table numéro 4 : 13,89 $

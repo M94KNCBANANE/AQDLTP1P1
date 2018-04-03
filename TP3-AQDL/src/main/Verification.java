@@ -23,10 +23,9 @@ public class Verification {
 			
 		boolean presenceTableau = false;;
 		
-		for (int i = 0 ; i < tab.length ; i++) {
+		for (int i = 0 ; i < qte ; i++) {
 			
 			if (tab[i].getNom().equals(chaine)) {
-				
 				presenceTableau = true;
 				break;
 			}
@@ -103,6 +102,23 @@ public class Verification {
 		
 		return clientOK;
 	}
+
+	public boolean formatTableCorrect(String string, int max) {
+		boolean TableOK = false;
+		
+		try {
+			
+			int test=Integer.parseInt( string );
+			if(test <=max){
+			TableOK = true;
+			}
+		} catch (Exception e) {
+			
+			TableOK = false;
+		}
+		
+		return TableOK;
+}
 }
 
 

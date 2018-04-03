@@ -15,6 +15,8 @@ import java.io.*;
 import java.nio.file.*;
 import java.nio.charset.*;
 
+import javax.swing.JTextArea;
+
 /**
  * Classe qui contient certaines méthodes utilitaires pour les fichiers. Cette
  * classe fait partie du package outilsjava.
@@ -59,7 +61,7 @@ public class OutilsFichier implements OutilsConstantes {
 	 *         null dans le cas contraire.
 	 */
 
-	public static BufferedReader ouvrirFicTexteLecture( String nomFichier ) {
+	public static BufferedReader ouvrirFicTexteLecture( String nomFichier, JTextArea zoneTexte ) {
 
 		boolean valide = true;
 		Path chemin = null;
@@ -72,8 +74,8 @@ public class OutilsFichier implements OutilsConstantes {
 
 		} 
 		catch ( InvalidPathException errNomFichier ) {
-			System.out.println( "\nErreur, le fichier " + nomFichier 
-					+ " contient des caractères illégaux." );
+			main.Refactoring.ecrireEcran(zoneTexte, "\nErreur, le fichier " + nomFichier 
+					+ " contient des caractères illégaux.");
 			valide = false;
 		}
 
@@ -86,8 +88,8 @@ public class OutilsFichier implements OutilsConstantes {
 
 			if ( Files.notExists( chemin ) ) {
 				// Le fichier n'existe pas.
-				System.out.println( "\nErreur, le fichier " + cheminAbsolu
-						+ " n'existe pas." );
+				main.Refactoring.ecrireEcran(zoneTexte, "\nErreur, le fichier " + cheminAbsolu
+						+ " n'existe pas.");
 				valide = false;
 
 			} else if ( Files.exists( chemin ) ) {
@@ -96,8 +98,8 @@ public class OutilsFichier implements OutilsConstantes {
 
 				if ( !Files.isRegularFile( chemin ) ) {
 
-					System.out.println( "\nErreur, le fichier " + cheminAbsolu
-							+ " n'est pas un fichier ordinaire." );
+					main.Refactoring.ecrireEcran(zoneTexte, "\nErreur, le fichier " + cheminAbsolu
+							+ " n'est pas un fichier ordinaire.");
 					valide = false;
 				} else {
 					// C'est un fichier ordinaire.
@@ -105,9 +107,9 @@ public class OutilsFichier implements OutilsConstantes {
 
 					if ( !Files.isReadable( chemin ) ) {
 
-						System.out.println( "\nErreur, le fichier "
+						main.Refactoring.ecrireEcran(zoneTexte, "\nErreur, le fichier "
 								+ cheminAbsolu
-								+ " n'est pas permis en lecture." );
+								+ " n'est pas permis en lecture.");
 						valide = false;
 					} else {
 						// Le fichier existe, est ordinaire 
@@ -120,17 +122,16 @@ public class OutilsFichier implements OutilsConstantes {
 											        Charset.defaultCharset() );
 						}
 						catch ( IOException errIO ) {
-							System.out
-									.println( "\nErreur, impossible d'ouvrir "
+							main.Refactoring.ecrireEcran(zoneTexte, "\nErreur, impossible d'ouvrir "
 											+ "le fichier " + cheminAbsolu
-											+ " en mode lecture texte." );
+											+ " en mode lecture texte.");
 							valide = false;
 						}
 					}
 				}
 			} else {
-				System.out.println( "\nErreur, impossible de vérifier "
-						+ "l'existence du fichier " + cheminAbsolu + "." );
+				main.Refactoring.ecrireEcran(zoneTexte, "\nErreur, impossible de vérifier "
+						+ "l'existence du fichier " + cheminAbsolu + ".");
 				valide = false;
 			}
 		}
